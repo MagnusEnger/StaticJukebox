@@ -1,11 +1,11 @@
-package Artist;
+package StaticJukebox::Artist;
 
 use Moose;
 use Modern::Perl;
 use Data::Dumper;
 use File::Slurp;
 
-use Album;
+use StaticJukebox::Album;
 
 has 'name' => (
     is  => 'rw',
@@ -29,7 +29,7 @@ sub scan_albums {
     my ( $self ) = @_;
     my @album_dirs = read_dir( $self->dir );
     foreach my $album_dir ( @album_dirs ) {
-        my $album = Album->new(
+        my $album = StaticJukebox::Album->new(
             name => $album_dir,
             dir  => $self->dir . $album_dir . '/',
         );

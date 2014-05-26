@@ -1,11 +1,11 @@
-package Album;
+package StaticJukebox::Album;
 
 use Moose;
 use Modern::Perl;
 use Data::Dumper;
 use File::Slurp;
 
-use Track;
+use StaticJukebox::Track;
 
 has 'name' => (
     is  => 'rw',
@@ -29,7 +29,7 @@ sub scan_tracks {
     my ( $self ) = @_;
     my @track_names = read_dir( $self->dir );
     foreach my $track_name ( sort @track_names ) {
-        my $track = Track->new(
+        my $track = StaticJukebox::Track->new(
             name => $track_name,
             path => $self->dir . $track_name,
         );

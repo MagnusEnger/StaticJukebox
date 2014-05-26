@@ -1,4 +1,4 @@
-package Track;
+package StaticJukebox::Track;
 
 use Moose;
 use Modern::Perl;

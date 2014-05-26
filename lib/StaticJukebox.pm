@@ -6,7 +6,7 @@ use Data::Dumper;
 use File::Slurp;
 use File::HomeDir;
 
-use Artist;
+use StaticJukebox::Artist;
 
 with 'MooseX::SimpleConfig';
 with 'MooseX::Getopt';
@@ -57,7 +57,7 @@ sub scan {
     my $self = shift;
     my @artist_dirs = read_dir( $self->{'source'} );
     foreach my $artist_dir ( @artist_dirs ) {
-        my $artist = Artist->new(
+        my $artist = StaticJukebox::Artist->new(
             name => $artist_dir,
             dir  => $self->{'source'} . $artist_dir . '/',
         );
