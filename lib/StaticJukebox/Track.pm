@@ -15,7 +15,22 @@ has 'rel_path' => (
     isa => 'Str',
 );
 
-has 'path' => (
+has 'full_path' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
+has 'directories' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
+has 'filename' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
+has 'suffix' => (
     is  => 'ro',
     isa => 'Str',
 );
@@ -23,7 +38,7 @@ has 'path' => (
 sub say_name {
 
     my $self = shift;
-    say "\t\t" . $self->name . " <" . $self->rel_path . "> <" . $self->path . ">";
+    say "\t\t" . $self->name . " <" . $self->full_path . ">";
 
 }
 
