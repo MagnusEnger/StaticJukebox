@@ -12,73 +12,17 @@ staticjukebox.pl - Gather reports from logwatch and format as an HTML page.
 
 =cut
 
-use File::HomeDir;
-use DateTime;
-use Getopt::Long;
-use Data::Dumper;
-use Pod::Usage;
+use lib 'lib';
+use StaticJukebox;
 use Modern::Perl;
 
-use lib 'lib';
-use StaticJukebox::Config qw( config );
-
-my $dt = DateTime->now;
-my $date = $dt->ymd;
-
-# Get options
-my ( $config_dir, $verbose, $debug ) = get_options();
-
 # Get the config
-my $config = config( $config_dir );
-say Dumper $config if $debug;
+my $app = StaticJukebox->new_with_options();
+$app->scan;
 
-=head1 OPTIONS
+=head1 ARGUMENTS
 
-=over 4
-
-=item B<-c, --configdir>
-
-Path to the directory where configfiles and metadata will be stored. If this 
-argument is not supplied, the default of F<~/.staticjukebox/> will 
-be used instead.
-
-=item B<-v --verbose>
-
-More verbose output.
-
-=item B<-d --debug>
-
-Even more verbose output.
-
-=item B<-h, -?, --help>
-
-Prints this help message and exits.
-
-=back
-                                                               
-=cut
-
-sub get_options {
-
-    # Options
-    my $config_dir = File::HomeDir->my_home . '/.staticjukebox/';
-    my $limit      = '', 
-    my $verbose    = '';
-    my $debug      = '';
-    my $help       = '';
-
-    GetOptions (
-        'c|configdir=s' => \$config_dir,
-        'v|verbose'     => \$verbose,
-        'd|debug'       => \$debug,
-        'h|?|help'      => \$help
-    );
-
-    pod2usage( -exitval => 0 ) if $help;
-
-    return ( $config_dir, $verbose, $debug );
-
-}
+Run C<perl staticjukebox.pl -h> to see possible arguments.
 
 =head1 AUTHOR
 
