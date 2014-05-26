@@ -10,6 +10,11 @@ has 'name' => (
     isa => 'Str',
 );
 
+has 'rel_path' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
 has 'path' => (
     is  => 'ro',
     isa => 'Str',
@@ -18,7 +23,7 @@ has 'path' => (
 sub say_name {
 
     my $self = shift;
-    say "\t\t" . $self->name . " <" . $self->path . ">";
+    say "\t\t" . $self->name . " <" . $self->rel_path . "> <" . $self->path . ">";
 
 }
 

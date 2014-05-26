@@ -13,6 +13,11 @@ has 'name' => (
     isa => 'Str',
 );
 
+has 'rel_dir' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
 has 'dir' => (
     is  => 'ro',
     isa => 'Str',
@@ -21,7 +26,7 @@ has 'dir' => (
 sub say_name {
 
     my $self = shift;
-    say "\t" . $self->name . " <" . $self->dir . ">";
+    say "\t" . $self->name . " <" . $self->rel_dir . "> <" . $self->dir . ">";
 
 }
 
@@ -31,8 +36,9 @@ sub scan_tracks {
     my @track_names = read_dir( $self->dir );
     foreach my $track_name ( sort @track_names ) {
         my $track = StaticJukebox::Track->new(
-            name => $track_name,
-            path => File::Spec->catfile( $self->dir, $track_name ),
+            name     => $track_name,
+            rel_path => File::Spec->catfile( $self->rel_dir, $track_name ),
+            path     => File::Spec->catfile( $self->dir, $track_name ),
         );
         $track->say_name;
     }

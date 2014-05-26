@@ -18,6 +18,16 @@ has 'rel_dir' => (
     isa => 'Str',
 );
 
+has 'rel_dir' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
+has 'rel_dir' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
 has 'dir' => (
     is  => 'ro',
     isa => 'Str',
@@ -26,7 +36,7 @@ has 'dir' => (
 sub say_name {
 
     my $self = shift;
-    say $self->name . " <" . $self->dir . ">";
+    say $self->name . " <" . $self->rel_dir . "> <" . $self->dir . ">";
 
 }
 
@@ -37,7 +47,7 @@ sub scan_albums {
     foreach my $album_dir ( @album_dirs ) {
         my $album = StaticJukebox::Album->new(
             name    => $album_dir,
-            rel_dir => $album_dir,
+            rel_dir => File::Spec->catdir( $self->name, $album_dir ),
             dir     => File::Spec->catdir( $self->dir, $album_dir ),
         );
         $album->say_name;

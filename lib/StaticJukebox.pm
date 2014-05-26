@@ -59,8 +59,9 @@ sub scan {
     my @artist_dirs = read_dir( $self->{'source'} );
     foreach my $artist_dir ( @artist_dirs ) {
         my $artist = StaticJukebox::Artist->new(
-            name => $artist_dir,
-            dir  => File::Spec->catdir( $self->{'source'}, $artist_dir ),
+            name    => $artist_dir,
+            rel_dir => $artist_dir,
+            dir     => File::Spec->catdir( $self->{'source'}, $artist_dir ),
         );
         $artist->say_name;
         $artist->scan_albums( $self->{'source'} );
