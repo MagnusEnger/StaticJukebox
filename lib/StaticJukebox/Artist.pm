@@ -18,16 +18,6 @@ has 'rel_dir' => (
     isa => 'Str',
 );
 
-has 'rel_dir' => (
-    is  => 'ro',
-    isa => 'Str',
-);
-
-has 'rel_dir' => (
-    is  => 'ro',
-    isa => 'Str',
-);
-
 has 'dir' => (
     is  => 'ro',
     isa => 'Str',
@@ -52,6 +42,22 @@ sub scan_albums {
         );
         $album->say_name;
         $album->scan_tracks;
+    }
+
+}
+
+sub check_dir {
+
+    my ( $self, $metadir, $target ) = @_;
+    
+    my $this_metadir = File::Spec->catdir( $metadir, $self->{'rel_dir'} );
+    if ( !-e $this_metadir ) {
+        say "Have to create $this_metadir";
+    }
+
+    my $this_target = File::Spec->catdir( $target, $self->{'rel_dir'} );
+    if ( !-e $this_target ) {
+        say "Have to create $this_target";
     }
 
 }

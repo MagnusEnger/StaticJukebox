@@ -64,6 +64,7 @@ sub scan {
             dir     => File::Spec->catdir( $self->{'source'}, $artist_dir ),
         );
         $artist->say_name;
+        $artist->check_dir( $self->{'metadir'}, $self->{'target'} );
         $artist->scan_albums( $self->{'source'} );
     }
 
