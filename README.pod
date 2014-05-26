@@ -1,0 +1,62 @@
+=pod
+
+=head1 NAME
+
+StaticJukebox
+
+=head1 SUMMARY
+
+Create and maintain a static HTML5 "jukebox" for browsing and playing music in a browser.
+
+=head1 PRINCIPLES
+
+=over 4
+
+=item * Do not alter the source music files in any way
+
+=back
+
+=head1 TODO
+
+=over 4
+
+=item * Discover music files in the source directory
+
+=item * Transform them to the desired formats in the target directory
+
+=item * Write HTML files for navigation and playback to the target directory
+
+=item * Keep track of metadata in files in a special directory
+
+=item * Make it possible to import and display metadata from sources like L<http://musicbrainz.org/>
+
+=item * Give everything GUIDs when they are discovered, to keep connections between files and metadata, even if files are renamed. 
+
+=back
+
+=head1 AUTHOR
+
+Magnus Enger magnus@enger.priv.no
+
+=head1 CODE, BUGS ETC
+
+L<https://github.com/MagnusEnger/StaticJukebox>
+
+=head1 LICENSE
+
+    This file is part of StaticJukebox.
+
+    StaticJukebox is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    StaticJukebox is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with StaticJukebox.  If not, see <http://www.gnu.org/licenses/>.
+
+=cut
