@@ -4,6 +4,7 @@ use Moose;
 use Modern::Perl;
 use Data::Dumper;
 use File::Slurp;
+use File::Spec;
 
 use StaticJukebox::Track;
 
@@ -31,7 +32,7 @@ sub scan_tracks {
     foreach my $track_name ( sort @track_names ) {
         my $track = StaticJukebox::Track->new(
             name => $track_name,
-            path => $self->dir . $track_name,
+            path => File::Spec->catfile( $self->dir, $track_name ),
         );
         $track->say_name;
     }

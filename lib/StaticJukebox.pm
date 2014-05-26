@@ -5,6 +5,7 @@ use Modern::Perl;
 use Data::Dumper;
 use File::Slurp;
 use File::HomeDir;
+use File::Spec;
 
 use StaticJukebox::Artist;
 
@@ -28,14 +29,14 @@ has 'target' => (
 has 'metadir' => (
     is => 'ro',
     isa => 'Str',
-    default => File::HomeDir->my_home . '/.staticjukebox/',
-    documentation => 'Path to directory where configs and metadata will be kept. If this is not provided, ~/.staticjukebox/ will be used.',
+    default => File::Spec->catdir( File::HomeDir->my_home, '.staticjukebox' ),
+    documentation => 'Path to directory where configs and metadata will be kept. If this is not provided, ~/.staticjukebox will be used.',
 );
 
 has 'configfile' => (
     is => 'ro',
     isa => 'Str',
-    default => File::HomeDir->my_home . '/.staticjukebox/config.yaml',
+    default => File::Spec->catfile( File::HomeDir->my_home, '.staticjukebox', 'config.yaml' ),
 );
 
 has 'verbose' => (
@@ -59,7 +60,7 @@ sub scan {
     foreach my $artist_dir ( @artist_dirs ) {
         my $artist = StaticJukebox::Artist->new(
             name => $artist_dir,
-            dir  => $self->{'source'} . $artist_dir . '/',
+            dir  => File::Spec->catdir( $self->{'source'}, $artist_dir ),
         );
         $artist->say_name;
         $artist->scan_albums( $self->{'source'} );
